@@ -1,6 +1,8 @@
 # UIST 2026 workshop site
 
-Minimal GitHub Pages site for **The Personalized Computer for the 21st Century**, a half-day in-person UIST 2026 workshop.
+Minimal GitHub Pages site for **The Personalized Computer for the 21st Century**, an in-person UIST 2026 workshop.
+
+The design combines the content economy of [dylanwootton.com](https://www.dylanwootton.com/) with the dense, monochrome workshop presentation of [aiagentbehavior.com](https://www.aiagentbehavior.com/).
 
 ## Local preview
 
@@ -24,29 +26,30 @@ GitHub Actions deploys the repository root to GitHub Pages without a build step.
 
 - `index.html`
 - `styles.css`
+- `assets/`
 - `.nojekyll`
 
 That keeps `.omx`, git metadata, and other repository files out of the published artifact.
 
-## Organizer links
+## Organizer portraits
 
-The organizers section links only to the verified homepages supplied during implementation:
+Portraits were downloaded from organizer-controlled or official institutional pages and are linked back to the organizers' homepages:
 
-- Helena Vasconcelos — Harvard SEAS profile
-- Dora Zhao — personal site
-- Michelle S. Lam — personal site
-- Dylan Wootton — personal site
-- Omar Shaikh — personal site
-- Andy Matuschak — personal site
-- Mitchell Gordon — MIT profile
-- Michael S. Bernstein — Stanford HCI profile
+- Helena Vasconcelos — [Harvard CHARM](https://charm.seas.harvard.edu/?page_id=37)
+- Dora Zhao — [personal site](https://dorazhao99.github.io/)
+- Michelle S. Lam — [personal site](https://michelle123lam.github.io/)
+- Dylan Wootton — [University of Utah VDL](https://vdl.sci.utah.edu/team/wootton/)
+- Omar Shaikh — [personal site](https://oshaikh.com/)
+- Andy Matuschak — [Foresight Institute](https://foresight.org/people/andy-matuschak/)
+- Mitchell Gordon — [personal site](https://mitchellg.github.io/)
+- Michael S. Bernstein — [Stanford HCI](https://hci.stanford.edu/msb/)
 
 ## Launch checklist
 
-Replace these source placeholders before announcing the site. Until then, the page shows honest “coming soon” and “to be announced” copy:
+Replace these source placeholders before announcing the site. Until then, the page shows bracketed placeholder copy:
 
 - `REPLACE_GOOGLE_FORM_URL`
 - `REPLACE_APPLICATION_DEADLINE`
 - `REPLACE_DECISION_DATE`
-- `REPLACE_CONTACT_URL_OR_EMAIL`
-- `REPLACE_UIST_2026_URL`
+- `REPLACE_WORKSHOP_DATE`
+- `REPLACE_VENUE_CITY`

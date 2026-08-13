@@ -12,6 +12,14 @@ required_files=(
   "scripts/verify.sh"
   ".nojekyll"
   "README.md"
+  "assets/organizers/helena-vasconcelos.jpg"
+  "assets/organizers/dora-zhao.png"
+  "assets/organizers/michelle-lam.jpg"
+  "assets/organizers/dylan-wootton.jpg"
+  "assets/organizers/omar-shaikh.jpeg"
+  "assets/organizers/andy-matuschak.webp"
+  "assets/organizers/mitchell-gordon.png"
+  "assets/organizers/michael-bernstein.jpg"
 )
 
 for file in "${required_files[@]}"; do
@@ -23,9 +31,10 @@ done
 
 required_copy=(
   "The Personalized Computer for the 21st Century"
-  "Three questions will organize the workshop."
-  "Apply to participate."
-  "Attendance is in person at UIST 2026. There will be no virtual participation option."
+  "Personal computers have rarely been truly personal."
+  "What should computers do when they know us deeply and can act on what they know?"
+  "Apply to participate ↗"
+  "No virtual attendance will be offered."
 )
 
 for phrase in "${required_copy[@]}"; do
@@ -39,8 +48,8 @@ placeholder_tokens=(
   "REPLACE_GOOGLE_FORM_URL"
   "REPLACE_APPLICATION_DEADLINE"
   "REPLACE_DECISION_DATE"
-  "REPLACE_CONTACT_URL_OR_EMAIL"
-  "REPLACE_UIST_2026_URL"
+  "REPLACE_WORKSHOP_DATE"
+  "REPLACE_VENUE_CITY"
 )
 
 for token in "${placeholder_tokens[@]}"; do
@@ -68,9 +77,11 @@ fi
 landmark_checks=(
   'href="#main-content"'
   '<main id="main-content">'
-  '<header class="hero section">'
-  '<footer class="site-footer section">'
-  '<table class="schedule-table">'
+  '<header class="site-header shell">'
+  '<section class="section shell" id="program"'
+  '<section class="section shell" id="participation"'
+  '<section class="section shell" id="organizers"'
+  '<footer class="site-footer shell">'
 )
 
 for fragment in "${landmark_checks[@]}"; do
@@ -81,13 +92,13 @@ for fragment in "${landmark_checks[@]}"; do
 done
 
 organizer_links=(
-  "https://seas.harvard.edu/person/helena-vasconcelos"
+  "https://helenavasc.com/"
   "https://dorazhao99.github.io/"
   "https://michelle123lam.github.io/"
   "https://www.dylanwootton.com/"
   "https://oshaikh.com/"
   "https://andymatuschak.org/"
-  "https://www.eecs.mit.edu/people/mitchell-gordon/"
+  "https://mitchellg.github.io/"
   "https://hci.stanford.edu/msb/"
 )
 
@@ -191,7 +202,7 @@ class Probe(http.server.SimpleHTTPRequestHandler):
         return None
 
 
-for path in ("index.html", "styles.css"):
+for path in ("index.html", "styles.css", "assets/organizers/dora-zhao.png"):
     probe = Probe(path, root)
     served = probe.send_head()
     if probe.status_code != 200 or served is None:
