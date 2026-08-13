@@ -113,6 +113,11 @@ rg -Fq 'url("../assets/fonts/inter-latin-400-700.woff2")' uist-26/styles.css || 
   exit 1
 }
 
+if rg -Fq 'profile-contour' uist-26/index.html uist-26/styles.css; then
+  echo "The removed profile contour must not return." >&2
+  exit 1
+fi
+
 if rg -n '(src|poster)=["'\'']https?://' index.html uist-26/index.html >/dev/null; then
   echo "External asset URLs are not allowed in HTML." >&2
   exit 1

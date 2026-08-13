@@ -14,6 +14,8 @@
   --line: #272725;
   --font: "Inter", sans-serif;
   --width: min(78rem, calc(100vw - 2.5rem));
+  --section-label: 8.5rem;
+  --section-gap: clamp(1.5rem, 4vw, 3.5rem);
 }
 
 *,
@@ -131,15 +133,17 @@ nav a:hover {
 
 .eyebrow {
   margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
+  padding-left: calc(var(--section-label) + var(--section-gap));
   color: var(--muted);
 }
 
 .hero-grid {
-  min-height: 21.5rem;
+  min-height: 18rem;
+  padding-left: calc(var(--section-label) + var(--section-gap));
   display: grid;
-  grid-template-columns: minmax(23rem, 1.05fr) minmax(13rem, 0.6fr) minmax(22rem, 0.95fr);
+  grid-template-columns: minmax(22rem, 1fr) minmax(22rem, 0.9fr);
   align-items: center;
-  gap: clamp(1.5rem, 3vw, 3rem);
+  gap: clamp(2rem, 5vw, 4.5rem);
 }
 
 h1,
@@ -180,23 +184,9 @@ h1 {
   font-size: 0.84rem;
 }
 
-.profile-contour {
-  width: 100%;
-  max-height: 20rem;
-  color: #4a4a47;
-  opacity: 0.58;
-  overflow: visible;
-  filter: drop-shadow(0 0 1.5rem rgba(255, 255, 255, 0.025));
-}
-
-.profile-contour path {
-  vector-effect: non-scaling-stroke;
-  stroke-width: 0.85;
-}
-
 .event-bar {
   margin-top: 1.5rem;
-  padding: 0.9rem 0 1rem;
+  padding: 0.9rem 0 1rem calc(var(--section-label) + var(--section-gap));
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
@@ -275,8 +265,8 @@ h1 {
 .section {
   padding: clamp(2rem, 3.5vw, 3rem) 0;
   display: grid;
-  grid-template-columns: 8.5rem minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 3.5rem);
+  grid-template-columns: var(--section-label) minmax(0, 1fr);
+  gap: var(--section-gap);
   border-top: 1px solid var(--line);
 }
 
@@ -458,8 +448,8 @@ h2 {
 
 @media (max-width: 70rem) {
   .hero-grid {
-    grid-template-columns: minmax(19rem, 1fr) minmax(9rem, 0.45fr) minmax(18rem, 0.85fr);
-    gap: 1.5rem;
+    grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 0.9fr);
+    gap: 2rem;
   }
 
   .event-facts {
@@ -476,18 +466,12 @@ h2 {
 @media (max-width: 48rem) {
   .hero-grid {
     min-height: 0;
-    position: relative;
     display: block;
+    padding-left: 0;
   }
 
-  .profile-contour {
-    width: 48%;
-    height: 17rem;
-    position: absolute;
-    top: 8.5rem;
-    right: -1rem;
-    z-index: -1;
-    opacity: 0.3;
+  .eyebrow {
+    padding-left: 0;
   }
 
   h1 {
@@ -504,6 +488,7 @@ h2 {
   }
 
   .event-bar {
+    padding-left: 0;
     grid-template-columns: 1fr;
     grid-template-areas:
       "facts"
