@@ -53,6 +53,7 @@ required_copy=(
   "Apply to participate ↗"
   "No virtual attendance will be offered."
   "Monday, November 2, 2026"
+  "Detroit, Michigan"
 )
 
 for phrase in "${required_copy[@]}"; do
@@ -66,7 +67,6 @@ placeholder_tokens=(
   "REPLACE_GOOGLE_FORM_URL"
   "REPLACE_APPLICATION_DEADLINE"
   "REPLACE_DECISION_DATE"
-  "REPLACE_VENUE_CITY"
 )
 
 for token in "${placeholder_tokens[@]}"; do
