@@ -28,8 +28,9 @@ jobs:
       - name: Stage static site
         run: |
           mkdir -p _site
-          cp index.html styles.css .nojekyll _site/
+          cp index.html styles.css CNAME .nojekyll _site/
           cp -R assets _site/
+          cp -R uist-26 _site/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4

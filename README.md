@@ -1,6 +1,6 @@
-# UIST 2026 workshop site
+# The Personalized Computer
 
-Minimal GitHub Pages site for **The Personalized Computer for the 21st Century**, an in-person UIST 2026 workshop.
+Minimal GitHub Pages site for **The Personalized Computer for the 21st Century** at [personalized.computer](https://personalized.computer/). The in-person UIST 2026 workshop lives at [`/uist-26/`](https://personalized.computer/uist-26/).
 
 The design combines the content economy of [dylanwootton.com](https://www.dylanwootton.com/) with the dense, monochrome workshop presentation of [aiagentbehavior.com](https://www.aiagentbehavior.com/).
 
@@ -18,7 +18,7 @@ To preview manually after verification:
 python3 -m http.server 8000
 ```
 
-Then open `http://127.0.0.1:8000/index.html`.
+Then open `http://127.0.0.1:8000/` for the landing page or `http://127.0.0.1:8000/uist-26/` for the workshop.
 
 ## Deployment
 
@@ -26,7 +26,9 @@ GitHub Actions deploys the repository root to GitHub Pages without a build step.
 
 - `index.html`
 - `styles.css`
+- `uist-26/`
 - `assets/`
+- `CNAME`
 - `.nojekyll`
 
 That keeps `.omx`, git metadata, and other repository files out of the published artifact.
@@ -46,7 +48,7 @@ Portraits were downloaded from organizer-controlled or official institutional pa
 
 ## Launch checklist
 
-Replace these source placeholders before announcing the site. Until then, the page shows bracketed placeholder copy:
+Replace these source placeholders in `uist-26/index.html` before announcing the workshop. Until then, the page shows bracketed placeholder copy:
 
 - `REPLACE_GOOGLE_FORM_URL`
 - `REPLACE_APPLICATION_DEADLINE`

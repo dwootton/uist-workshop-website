@@ -8,6 +8,9 @@ cd "$ROOT_DIR"
 required_files=(
   "index.html"
   "styles.css"
+  "uist-26/index.html"
+  "uist-26/styles.css"
+  "CNAME"
   ".github/workflows/pages.yml"
   "scripts/verify.sh"
   ".nojekyll"
@@ -30,6 +33,19 @@ for file in "${required_files[@]}"; do
   }
 done
 
+landing_copy=(
+  "The Personalized Computer for the 21st Century"
+  "We are exploring what"
+  "UIST 2026 workshop"
+)
+
+for phrase in "${landing_copy[@]}"; do
+  rg -Fq "$phrase" index.html || {
+    echo "Missing landing-page copy: $phrase" >&2
+    exit 1
+  }
+done
+
 required_copy=(
   "The Personalized Computer for the 21st Century"
   "Personal computers have rarely been truly personal."
@@ -40,7 +56,7 @@ required_copy=(
 )
 
 for phrase in "${required_copy[@]}"; do
-  rg -Fq "$phrase" index.html || {
+  rg -Fq "$phrase" uist-26/index.html || {
     echo "Missing required copy: $phrase" >&2
     exit 1
   }
@@ -54,7 +70,7 @@ placeholder_tokens=(
 )
 
 for token in "${placeholder_tokens[@]}"; do
-  rg -Fq "$token" index.html README.md || {
+  rg -Fq "$token" uist-26/index.html README.md || {
     echo "Missing placeholder token: $token" >&2
     exit 1
   }
@@ -65,22 +81,44 @@ rg -Fq '<link rel="stylesheet" href="styles.css">' index.html || {
   exit 1
 }
 
-rg -Fq 'font-family: "Inter";' styles.css || {
-  echo "Inter must be the locally bundled site font." >&2
+rg -Fq 'href="uist-26/"' index.html || {
+  echo "Landing page must link to the uist-26 route." >&2
   exit 1
 }
 
-if rg -ni '(^|[^-])serif|georgia|palatino|times new roman' styles.css >/dev/null; then
-  echo "Serif font references are not allowed." >&2
-  exit 1
-fi
+for stylesheet in styles.css uist-26/styles.css; do
+  rg -Fq 'font-family: "Inter";' "$stylesheet" || {
+    echo "Inter must be the locally bundled site font in $stylesheet." >&2
+    exit 1
+  }
 
-if rg -n '(src|poster)=["'\'']https?://' index.html >/dev/null; then
+  if rg -ni '(^|[^-])serif|georgia|palatino|times new roman' "$stylesheet" >/dev/null; then
+    echo "Serif font references are not allowed in $stylesheet." >&2
+    exit 1
+  fi
+done
+
+rg -Fq '<link rel="stylesheet" href="styles.css">' uist-26/index.html || {
+  echo "Workshop stylesheet link must remain relative." >&2
+  exit 1
+}
+
+rg -Fq 'src="../assets/organizers/' uist-26/index.html || {
+  echo "Workshop organizer paths must resolve from uist-26." >&2
+  exit 1
+}
+
+rg -Fq 'url("../assets/fonts/inter-latin-400-700.woff2")' uist-26/styles.css || {
+  echo "Workshop font path must resolve from uist-26." >&2
+  exit 1
+}
+
+if rg -n '(src|poster)=["'\'']https?://' index.html uist-26/index.html >/dev/null; then
   echo "External asset URLs are not allowed in HTML." >&2
   exit 1
 fi
 
-if rg -n 'url\(["'\'']?https?://' styles.css >/dev/null; then
+if rg -n 'url\(["'\'']?https?://' styles.css uist-26/styles.css >/dev/null; then
   echo "External asset URLs are not allowed in CSS." >&2
   exit 1
 fi
@@ -96,7 +134,7 @@ landmark_checks=(
 )
 
 for fragment in "${landmark_checks[@]}"; do
-  rg -Fq "$fragment" index.html || {
+  rg -Fq "$fragment" uist-26/index.html || {
     echo "Missing landmark or structure fragment: $fragment" >&2
     exit 1
   }
@@ -114,16 +152,28 @@ organizer_links=(
 )
 
 for url in "${organizer_links[@]}"; do
-  rg -Fq "$url" index.html || {
+  rg -Fq "$url" uist-26/index.html || {
     echo "Missing organizer link: $url" >&2
     exit 1
   }
 done
 
-open_braces="$(tr -cd '{' < styles.css | wc -c | tr -d ' ')"
-close_braces="$(tr -cd '}' < styles.css | wc -c | tr -d ' ')"
-[[ "$open_braces" == "$close_braces" ]] || {
-  echo "styles.css has unbalanced braces." >&2
+for stylesheet in styles.css uist-26/styles.css; do
+  open_braces="$(tr -cd '{' < "$stylesheet" | wc -c | tr -d ' ')"
+  close_braces="$(tr -cd '}' < "$stylesheet" | wc -c | tr -d ' ')"
+  [[ "$open_braces" == "$close_braces" ]] || {
+    echo "$stylesheet has unbalanced braces." >&2
+    exit 1
+  }
+done
+
+[[ "$(tr -d '\r\n' < CNAME)" == "personalized.computer" ]] || {
+  echo "CNAME must contain personalized.computer." >&2
+  exit 1
+}
+
+rg -Fq 'cp -R uist-26 _site/' .github/workflows/pages.yml || {
+  echo "Workflow must publish the uist-26 route." >&2
   exit 1
 }
 
@@ -179,12 +229,13 @@ class StructureParser(HTMLParser):
         self.stack.pop()
 
 
-parser = StructureParser()
-with open("index.html", encoding="utf-8") as html_file:
-    parser.feed(html_file.read())
-parser.close()
-if parser.stack:
-    raise SystemExit(f"Unclosed HTML elements: {', '.join(parser.stack)}")
+for html_path in ("index.html", "uist-26/index.html"):
+    parser = StructureParser()
+    with open(html_path, encoding="utf-8") as html_file:
+        parser.feed(html_file.read())
+    parser.close()
+    if parser.stack:
+        raise SystemExit(f"Unclosed HTML elements in {html_path}: {', '.join(parser.stack)}")
 
 
 class Probe(http.server.SimpleHTTPRequestHandler):
@@ -213,7 +264,13 @@ class Probe(http.server.SimpleHTTPRequestHandler):
         return None
 
 
-for path in ("index.html", "styles.css", "assets/organizers/dora-zhao.png"):
+for path in (
+    "index.html",
+    "styles.css",
+    "uist-26/index.html",
+    "uist-26/styles.css",
+    "assets/organizers/dora-zhao.png",
+):
     probe = Probe(path, root)
     served = probe.send_head()
     if probe.status_code != 200 or served is None:
