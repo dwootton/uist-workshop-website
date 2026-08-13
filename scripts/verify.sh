@@ -50,7 +50,7 @@ required_copy=(
   "The Personalized Computer for the 21st Century"
   "Personal computers have rarely been truly personal."
   "What should computers do when they know us deeply and can act on what they know?"
-  "Apply to participate ↗"
+  "Apply ↗"
   "No virtual attendance will be offered."
   "Monday, November 2, 2026"
   "Detroit, Michigan"

@@ -138,10 +138,10 @@ nav a:hover {
 }
 
 .hero-grid {
-  min-height: 15.5rem;
+  min-height: 14rem;
   padding-left: calc(var(--section-label) + var(--section-gap));
   display: grid;
-  grid-template-columns: minmax(21rem, 1.05fr) minmax(21rem, 0.95fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: center;
   gap: clamp(1.5rem, 2.5vw, 2.5rem);
 }
@@ -162,16 +162,16 @@ h3 {
 }
 
 h1 {
-  max-width: 12.5ch;
+  max-width: 13ch;
   margin-bottom: 0;
-  font-size: clamp(2.8rem, 4.35vw, 4.15rem);
+  font-size: clamp(2.5rem, 3.9vw, 3.75rem);
   line-height: 1.02;
 }
 
 .hero-question {
-  max-width: 25ch;
+  max-width: 27ch;
   margin-bottom: 1rem;
-  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  font-size: clamp(1.2rem, 1.75vw, 1.65rem);
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.035em;
@@ -181,7 +181,7 @@ h1 {
   max-width: 38rem;
   margin-bottom: 0;
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: 0.8rem;
 }
 
 .event-bar {
@@ -231,7 +231,7 @@ h1 {
   font-weight: 700;
   letter-spacing: 0.045em;
   text-transform: uppercase;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .application-note,
@@ -447,8 +447,13 @@ h2 {
 }
 
 @media (max-width: 70rem) {
+  :root {
+    --section-label: 6rem;
+    --section-gap: 2rem;
+  }
+
   .hero-grid {
-    grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 0.9fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
     gap: 1.5rem;
   }
 
