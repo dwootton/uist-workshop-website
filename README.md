@@ -51,5 +51,4 @@ Replace these source placeholders before announcing the site. Until then, the pa
 - `REPLACE_GOOGLE_FORM_URL`
 - `REPLACE_APPLICATION_DEADLINE`
 - `REPLACE_DECISION_DATE`
-- `REPLACE_WORKSHOP_DATE`
 - `REPLACE_VENUE_CITY`

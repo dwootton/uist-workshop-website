@@ -20,6 +20,7 @@ required_files=(
   "assets/organizers/andy-matuschak.webp"
   "assets/organizers/mitchell-gordon.png"
   "assets/organizers/michael-bernstein.jpg"
+  "assets/fonts/inter-latin-400-700.woff2"
 )
 
 for file in "${required_files[@]}"; do
@@ -35,6 +36,7 @@ required_copy=(
   "What should computers do when they know us deeply and can act on what they know?"
   "Apply to participate ↗"
   "No virtual attendance will be offered."
+  "Monday, November 2, 2026"
 )
 
 for phrase in "${required_copy[@]}"; do
@@ -48,7 +50,6 @@ placeholder_tokens=(
   "REPLACE_GOOGLE_FORM_URL"
   "REPLACE_APPLICATION_DEADLINE"
   "REPLACE_DECISION_DATE"
-  "REPLACE_WORKSHOP_DATE"
   "REPLACE_VENUE_CITY"
 )
 
@@ -63,6 +64,16 @@ rg -Fq '<link rel="stylesheet" href="styles.css">' index.html || {
   echo "Stylesheet link must remain relative." >&2
   exit 1
 }
+
+rg -Fq 'font-family: "Inter";' styles.css || {
+  echo "Inter must be the locally bundled site font." >&2
+  exit 1
+}
+
+if rg -ni '(^|[^-])serif|georgia|palatino|times new roman' styles.css >/dev/null; then
+  echo "Serif font references are not allowed." >&2
+  exit 1
+fi
 
 if rg -n '(src|poster)=["'\'']https?://' index.html >/dev/null; then
   echo "External asset URLs are not allowed in HTML." >&2
