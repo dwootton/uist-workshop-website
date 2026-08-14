@@ -191,6 +191,7 @@ h1 {
   width: min(100%, calc(var(--section-label) + var(--section-gap) + var(--content-measure)));
   margin-top: 1rem;
   padding: 0.8rem 0 0.9rem calc(var(--section-label) + var(--section-gap));
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
@@ -198,8 +199,17 @@ h1 {
     "note button";
   align-items: center;
   gap: 0.5rem 0.9rem;
-  border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--line);
+}
+
+.event-bar::before {
+  content: "";
+  width: var(--width);
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--ink);
 }
 
 .event-facts {
@@ -259,6 +269,7 @@ h1 {
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.07em;
+  text-decoration: none;
   text-transform: uppercase;
 }
 
