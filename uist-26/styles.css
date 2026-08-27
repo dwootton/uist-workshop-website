@@ -193,9 +193,7 @@ h1 {
   padding: 0.8rem 0 0.9rem calc(var(--section-label) + var(--section-gap));
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "facts button"
-    "note button";
+  grid-template-areas: "facts button";
   align-items: center;
   gap: 0.5rem 0.9rem;
 }
@@ -234,16 +232,6 @@ h1 {
   letter-spacing: 0.045em;
   text-transform: uppercase;
   white-space: normal;
-}
-
-.application-note {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.66rem;
-}
-
-.application-note {
-  grid-area: note;
 }
 
 .button {
@@ -327,7 +315,8 @@ h2 {
   border-bottom: 1px solid var(--line);
 }
 
-.program-list time {
+.program-list time,
+.program-time {
   color: var(--muted);
   font-size: 0.66rem;
   font-weight: 600;
@@ -352,26 +341,6 @@ h2 {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 0.76rem;
-}
-
-.dates {
-  margin: 1.25rem 0 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--line);
-}
-
-.dates div {
-  padding: 0.75rem 0.75rem 0 0;
-}
-
-.dates dt {
-  color: var(--muted);
-}
-
-.dates dd {
-  margin: 0.15rem 0 0;
-  font-size: 0.82rem;
 }
 
 .organizer-grid {
@@ -483,8 +452,7 @@ h2 {
     grid-template-columns: 1fr;
     grid-template-areas:
       "facts"
-      "button"
-      "note";
+      "button";
   }
 
   .event-bar .button {
@@ -559,16 +527,6 @@ h2 {
   .program-list li {
     grid-template-columns: 5.25rem minmax(0, 1fr);
     gap: 0.7rem;
-  }
-
-  .dates {
-    grid-template-columns: 1fr;
-  }
-
-  .dates div + div {
-    margin-top: 0.6rem;
-    padding-top: 0.6rem;
-    border-top: 1px solid var(--line);
   }
 
   .site-footer {
