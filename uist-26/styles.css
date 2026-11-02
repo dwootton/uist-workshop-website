@@ -191,17 +191,15 @@ h1 {
   margin-top: 1rem;
   padding: 0.8rem 0 0.9rem calc(var(--section-label) + var(--section-gap));
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas: "facts button";
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: 0.5rem 0.9rem;
+  gap: 1rem;
 }
 
 .event-facts {
-  grid-area: facts;
   margin: 0;
   display: grid;
-  grid-template-columns: 1.35fr 0.95fr 1fr 0.9fr;
+  grid-template-columns: 1.15fr 1fr 1.5fr 0.75fr;
 }
 
 .event-facts div {
@@ -247,8 +245,12 @@ h1 {
   text-transform: uppercase;
 }
 
-.event-bar .button {
-  grid-area: button;
+.event-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.7rem;
 }
 
 .section {
@@ -340,6 +342,45 @@ h2 {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 0.76rem;
+}
+
+.program-list p + p {
+  margin-top: 0.5rem;
+}
+
+.program-list strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.activity-timing {
+  margin: 0.75rem 0 0;
+  font-size: 0.76rem;
+}
+
+.activity-timing div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.activity-timing dt {
+  flex: 0 0 6rem;
+}
+
+.activity-timing dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.resource-list {
+  margin: 0 0 1.25rem;
+  padding-left: 1.1rem;
+}
+
+.resource-list li + li {
+  margin-top: 0.5rem;
 }
 
 .organizer-grid {
@@ -449,9 +490,6 @@ h2 {
   .event-bar {
     padding-left: 0;
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "facts"
-      "button";
   }
 
   .event-bar .button {
