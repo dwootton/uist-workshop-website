@@ -1,0 +1,52 @@
+.demo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 1.25rem;
+}
+
+.demo {
+  min-width: 0;
+}
+
+.demo video {
+  width: 100%;
+  aspect-ratio: 2492 / 1478;
+  margin-bottom: 0.7rem;
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.demo-group {
+  margin-bottom: 0.3rem;
+  color: var(--muted);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.demo h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+}
+
+.demo-copy p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.section-copy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (max-width: 48rem) {
+  .demo-list {
+    grid-template-columns: 1fr;
+  }
+}
